@@ -1,9 +1,8 @@
-from app.routes.v1.auth import router as auth
-from fastapi import FastAPI
-from app.db.connect import settings
 import uvicorn
+from fastapi import FastAPI
 
-
+from app.db.connect import settings
+from app.routes.v1.auth import router as auth
 
 # app = FastAPI(docs_url=None, redoc_url=None)
 app = FastAPI(debug=True)

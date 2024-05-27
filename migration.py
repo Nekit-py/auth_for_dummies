@@ -2,8 +2,8 @@ import asyncio
 
 from sqlalchemy.schema import CreateSchema
 
-from app.db.models import Base
 from app.db.connect import async_engine
+from app.db.models import Base
 from app.logger.logger import *
 
 logger = logging.getLogger(__name__)

@@ -13,10 +13,12 @@ def hash_password(password: str, salt: bytes) -> bytes:
     """
     Получение хэша пароля
     """
-    return hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000)
+    return hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 100000)
 
 
-def verify_password(stored_password_hash: str, stored_salt: str, input_password: str) -> bool:
+def verify_password(
+    stored_password_hash: str, stored_salt: str, input_password: str
+) -> bool:
     """
     Верификация пароля
     """

@@ -1,13 +1,14 @@
-from app.schemas.db.users import UserAdd, UserCreate, UserUpdate
-from app.schemas.db.tokens import TokenAdd, TokenUpdate
-from app.db import models
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import delete, select, update
 from typing import Generic, Type, TypeVar
 from uuid import UUID
-from pydantic import BaseModel, TypeAdapter
-from app.db.models import Base
 
+from pydantic import BaseModel, TypeAdapter
+from sqlalchemy import delete, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db import models
+from app.db.models import Base
+from app.schemas.db.tokens import TokenAdd, TokenUpdate
+from app.schemas.db.users import UserAdd, UserCreate, UserUpdate
 
 ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
@@ -69,7 +70,7 @@ class BaseCrud(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
 class UserCrud(BaseCrud[models.User, UserAdd, UserUpdate]):
     """
-    CRUD для таблтицы Users 
+    CRUD для таблтицы Users
     """
 
     def __init__(self, session: AsyncSession):
@@ -78,7 +79,7 @@ class UserCrud(BaseCrud[models.User, UserAdd, UserUpdate]):
 
 class TokenCrud(BaseCrud[models.Token, TokenAdd, TokenUpdate]):
     """
-    CRUD для таблтицы Users 
+    CRUD для таблтицы Users
     """
 
     def __init__(self, session: AsyncSession):

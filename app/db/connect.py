@@ -2,13 +2,11 @@ from typing import AsyncGenerator
 
 from fastapi import HTTPException
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from sqlalchemy.ext.asyncio import (
-    AsyncSession, async_sessionmaker, create_async_engine
-)
+from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
+                                    create_async_engine)
 
 from app.db.config import Settings
 from app.logger.logger import *
-
 
 logger = logging.getLogger(__name__)
 logger.propagate = False

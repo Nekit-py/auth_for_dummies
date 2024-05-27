@@ -1,12 +1,14 @@
-from pydantic import Field, validator
-from fastapi import Depends
-from uuid import UUID
-from app.schemas.common import ID, AppBase
 from datetime import datetime
+from uuid import UUID
+
+from fastapi import Depends
+from pydantic import Field, validator
+
+from app.schemas.common import ID, AppBase
 
 
 class TokenAdd(AppBase):
-    user_id: UUID = Depends(ID) 
+    user_id: UUID = Depends(ID)
 
 
 class TokenBase(AppBase):
