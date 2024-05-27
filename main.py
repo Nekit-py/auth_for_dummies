@@ -1,7 +1,5 @@
-from app.db.utils import  generate_salt, hash_password
-from app.schemas.db.users import UserCreate
 from app.routes.v1.auth import router as auth
-from fastapi import APIRouter, Depends, Response, Request, FastAPI
+from fastapi import FastAPI
 from app.db.connect import settings
 import uvicorn
 
@@ -18,4 +16,4 @@ async def index():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=int(settingsHOST_PORT), reload=False)
+    uvicorn.run("main:app", host="0.0.0.0", port=int(settings.HOST_PORT), reload=False)

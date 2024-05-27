@@ -6,8 +6,8 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession, async_sessionmaker, create_async_engine
 )
 
-from db.config import Settings
-from logger.logger import *
+from app.db.config import Settings
+from app.logger.logger import *
 
 
 logger = logging.getLogger(__name__)

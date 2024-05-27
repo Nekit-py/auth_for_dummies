@@ -1,15 +1,15 @@
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import EmailStr, Field, validator
 from fastapi.exceptions import HTTPException
-from app.schemas.coomon import ID
-from uuid import UUID
+from app.schemas.common import ID, AppBase
+from app.schemas.db.tokens import TokenBase
 
 
-class NameAndMail(BaseModel):
-    name: str = Field(min_length=10, max_length=50)
+class NameAndMail(AppBase):
+    username: str = Field(min_length=10, max_length=50)
     email: EmailStr
 
 
-class PasswordSet(BaseModel):
+class PasswordSet(AppBase):
     password: str = Field(min_length=6, max_length=20)
     repeat_password: str = Field(min_length=6, max_length=20)
 
@@ -31,19 +31,6 @@ class UserUpdate(ID, NameAndMail):
 class UserAdd(NameAndMail):
     password_hash: str
     salt: str
-
-
-class TokenBase(BaseModel):
-    token: UUID = Field(..., alias="access_token")
-    token_type: str | None = "bearer"
-
-    @validator("token")
-    def hexlify_token(cls, value):
-        """Конвертирует UUID в hex строку"""
-        return value.hex
-
-    class Config:
-        allow_population_by_field_name = True
 
 
 class User(ID, NameAndMail):
