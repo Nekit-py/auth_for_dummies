@@ -11,5 +11,4 @@ WORKDIR /app
 
 ENV TZ="Europe/Moscow"
 
-CMD ["python3", "migration.py"]
 CMD ["python3", "main.py"]

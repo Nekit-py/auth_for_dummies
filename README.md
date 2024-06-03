@@ -5,12 +5,12 @@
 HOST=192.168.192.168
 HOST_PORT=8080
 DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=admin
-DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=admin
+POSTGRES_DB=postgres_db
 ```
 ### Сборка:
-```
+```console
 docker-compose up --build -d
 ```
 ### Пользуем:
