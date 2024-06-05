@@ -4,12 +4,21 @@ from fastapi import FastAPI
 from app.db.connect import settings
 from app.routes.v1.auth import router as auth
 from app.routes.v1.users import router as users
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # app = FastAPI(docs_url=None, redoc_url=None)
 app = FastAPI(debug=True)
 app.include_router(auth)
 app.include_router(users)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", status_code=200)
 async def index():
