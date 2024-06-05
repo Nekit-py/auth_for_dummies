@@ -34,6 +34,8 @@ class User(Base):
 class Token(Base):
     __tablename__ = "tokens"
 
+    #https://pypi.org/project/python-jose/
+
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()")
     )

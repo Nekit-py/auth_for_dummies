@@ -1,5 +1,6 @@
 from fastapi.exceptions import HTTPException
-from pydantic import EmailStr, Field, validator
+from pydantic import EmailStr, Field, model_validator
+from typing_extensions import Self
 
 from app.schemas.common import ID, AppBase
 from app.schemas.db.tokens import TokenBase
@@ -14,11 +15,11 @@ class PasswordSet(AppBase):
     password: str = Field(min_length=6, max_length=20)
     repeat_password: str = Field(min_length=6, max_length=20)
 
-    @validator("repeat_password")
-    def passwords_match(cls, v, values):
-        if v != values["password"]:
+    @model_validator(mode='after')
+    def pwd_validator(self) -> Self:
+        if self.password != self.repeat_password:
             raise HTTPException(status_code=400, detail="Passwords do not match")
-        return v
+        return self
 
 
 class UserCreate(NameAndMail, PasswordSet):

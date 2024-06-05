@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Depends
-
 from app.db.connect import get_db_session
-from app.db.manager.crud import TokenCrud, UserCrud
+from app.db.manager.crud import UserCrud
 from app.db.utils import generate_salt, hash_password
-from app.schemas.db.tokens import TokenAdd
-from app.schemas.db.users import User, UserAdd, UserCreate
+from app.schemas.db.users import UserAdd, UserCreate
+
 
 router = APIRouter(prefix="/v1/auth", tags=["Auth"])
 
@@ -22,9 +21,6 @@ async def create_user(user: UserCreate, session=Depends(get_db_session)):
         password_hash=password_hash,
         salt=salt.hex(),
     )
-    async with session.begin():
-        uc = UserCrud(session)
-        id = await uc.create(new_user)
-        tk = TokenCrud(session)
-        await tk.create(TokenAdd(user_id=id["id"]))
-    return {"message": "registered"}
+    uc = UserCrud(session)
+    return await uc.create(new_user)
+
