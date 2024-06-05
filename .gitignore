@@ -7,3 +7,6 @@ backend/env
 *.docx
 *.log
 *.env
+
+
+frontend/node_modules
