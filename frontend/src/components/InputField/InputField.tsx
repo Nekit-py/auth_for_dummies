@@ -3,18 +3,17 @@ import TextField from '@mui/material/TextField';
 type FieldProps = {
   type: 'email' | 'password';
   label: string;
+  id: string;
 };
 
-const Field = ({ type, label }: FieldProps) => {
+const InputField = ({ type, label, id }: FieldProps) => {
   return (
     <TextField
-      required
-      id='outlined-password-input'
+      id={id}
       label={label}
       type={type}
-      margin='normal'
     />
   );
 };
 
-export { Field };
+export { InputField };

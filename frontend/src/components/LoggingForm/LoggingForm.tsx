@@ -1,23 +1,33 @@
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Field } from '../InputField/Field';
-
-import { InputFieldConsts } from '../../constants/constants';
+import { InputField } from '../InputField/InputField';
+import { LoggingFormBox } from '../LoggingFormBox';
+import { InputFieldConsts } from '../../constants/';
 
 const LoggingForm = () => {
   return (
     <form>
-      <Typography variant='h4' component='h2'>
-        Sign up
-      </Typography>
+      <LoggingFormBox>
+        <Typography variant='h4' component='h2'>
+          {InputFieldConsts.TITLE}
+        </Typography>
 
-      <Field type='email' label={InputFieldConsts.LOGIN_EMAIL} />
-      <br />
-      <Field type='password' label={InputFieldConsts.LOGIN_PASSWORD} />
-      <br />
-      <Button variant='outlined' type='submit'>
-        Sign up
-      </Button>
+        <InputField
+          id='email'
+          type='email'
+          label={InputFieldConsts.LOGIN_EMAIL}
+        />
+
+        <InputField
+          id='password'
+          type='password'
+          label={InputFieldConsts.LOGIN_PASSWORD}
+        />
+
+        <Button variant='outlined' type='submit'>
+          {InputFieldConsts.TITLE}
+        </Button>
+      </LoggingFormBox>
     </form>
   );
 };

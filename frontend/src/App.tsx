@@ -1,5 +1,5 @@
 import './App.css';
-import { LoggingForm } from './components/LoggingForm/LoggingForm';
+import { LoggingForm } from './components/LoggingForm';
 
 function App() {
   return (
