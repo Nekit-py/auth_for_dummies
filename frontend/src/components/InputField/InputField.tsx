@@ -1,12 +1,12 @@
 import TextField from '@mui/material/TextField';
 
 type FieldProps = {
-  type: 'email' | 'password';
   label: string;
   id: string;
+  type?: string
 };
 
-const InputField = ({ type, label, id }: FieldProps) => {
+const InputField = ({ label, id, type}: FieldProps) => {
   return (
     <TextField
       id={id}

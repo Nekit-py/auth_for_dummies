@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { InputField } from '../InputField/InputField';
+import { InputField } from '../InputField';
 import { LoggingFormBox } from '../LoggingFormBox';
-import { InputFieldConsts } from '../../constants/';
+import { InputFieldConsts } from '../../constants';
 
 const LoggingForm = () => {
   return (
@@ -12,16 +12,12 @@ const LoggingForm = () => {
           {InputFieldConsts.TITLE}
         </Typography>
 
-        <InputField
-          id='email'
-          type='email'
-          label={InputFieldConsts.LOGIN_EMAIL}
-        />
+        <InputField id='email' label={InputFieldConsts.LOGIN_EMAIL} />
 
         <InputField
           id='password'
-          type='password'
           label={InputFieldConsts.LOGIN_PASSWORD}
+          type='password'
         />
 
         <Button variant='outlined' type='submit'>
