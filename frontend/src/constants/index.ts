@@ -1,2 +1,1 @@
-import { InputFieldConsts } from './constants';
-export { InputFieldConsts };
+export { InputFieldConsts } from './constants';
