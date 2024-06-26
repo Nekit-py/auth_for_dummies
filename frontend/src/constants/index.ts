@@ -1,1 +1,1 @@
-export { InputFieldConsts } from './constants';
+export { AuthFormConsts, EMAIl_REG_EXP } from './constants';
