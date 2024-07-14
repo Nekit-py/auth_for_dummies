@@ -4,8 +4,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { InputField } from '../InputField';
 import { LoggingFormBox } from '../LoggingFormBox';
-import { TAuthFormValues, TAuthMode } from '../../models/auth';
 import { AuthFormConsts, EMAIl_REG_EXP } from '../../constants';
+
+type TAuthMode = 'signin' | 'signup';
+
+type TAuthFormValues = {
+  email: string;
+  password: string;
+  repassword?: string;
+};
 
 const LoggingForm = () => {
   const [authMode, setAuthMode] = useState<TAuthMode>('signin');
@@ -26,12 +33,11 @@ const LoggingForm = () => {
     if (authMode === 'signup' && data.password !== data.repassword) {
       setError('repassword', {
         type: 'manual',
-        message: AuthFormConsts.ERRORS.PASSWORD.NOT_MATCH
+        message: AuthFormConsts.PASSWORD_NOT_MATCH
       });
       return;
     }
 
-    //пока просто выводим в консоль
     console.log(data);
   };
 
@@ -48,7 +54,7 @@ const LoggingForm = () => {
     <form onSubmit={handleSubmit(onSubmit, onError)} noValidate >
       <LoggingFormBox>
         <Typography variant='h4' component='h2'>
-          {authMode === 'signin' ? AuthFormConsts.TITLE.SIGN_IN : AuthFormConsts.TITLE.SIGN_UP}
+          {authMode === 'signin' ? AuthFormConsts.SIGN_IN_TITLE : AuthFormConsts.SIGN_UP_TITLE}
         </Typography>
 
         <Controller
@@ -57,11 +63,11 @@ const LoggingForm = () => {
           rules={{
             required: {
               value: true,
-              message: AuthFormConsts.ERRORS.EMAIL.REQUIRED
+              message: AuthFormConsts.EMAIL_REQUIRED
             },
             pattern: {
               value: EMAIl_REG_EXP,
-              message: AuthFormConsts.ERRORS.EMAIL.INVALID
+              message: AuthFormConsts.EMAIL_INVALID
             }
           }}
           render={({ field }) => (
@@ -81,12 +87,11 @@ const LoggingForm = () => {
           rules={{
             required: {
               value: true,
-              message: AuthFormConsts.ERRORS.PASSWORD.REQUIRED
+              message: AuthFormConsts.PASSWORD_REQUIRED
             },
             minLength: {
               value: 6,
-              //посмотреть в api какие правила
-              message: AuthFormConsts.ERRORS.PASSWORD.MIN_LENGTH
+              message: AuthFormConsts.PASSWORD_MIN_LENGTH
             }
           }}
           render={({ field }) => (
@@ -107,12 +112,11 @@ const LoggingForm = () => {
             rules={{
               required: {
                 value: true,
-                message: AuthFormConsts.ERRORS.PASSWORD.REQUIRED
+                message: AuthFormConsts.PASSWORD_REQUIRED
               },
               minLength: {
                 value: 6,
-                //посмотреть в api какие правила
-                message: AuthFormConsts.ERRORS.PASSWORD.MIN_LENGTH
+                message: AuthFormConsts.PASSWORD_MIN_LENGTH
               }
             }}
             render={({ field }) => (
@@ -128,7 +132,7 @@ const LoggingForm = () => {
         )}
 
         <Button variant='outlined' type='submit' disabled={isSubmitting}>
-          {authMode === 'signin' ? AuthFormConsts.TITLE.SIGN_IN : AuthFormConsts.TITLE.SIGN_UP}
+          {authMode === 'signin' ? AuthFormConsts.SIGN_IN_TITLE : AuthFormConsts.SIGN_UP_TITLE}
         </Button>
 
         <Button
@@ -147,7 +151,7 @@ const LoggingForm = () => {
             },
           }}
         >
-          {authMode === 'signin' ? AuthFormConsts.QUESTION.SIGN_IN : AuthFormConsts.QUESTION.SIGN_UP}
+          {authMode === 'signin' ? AuthFormConsts.SIGN_IN_QUESTION : AuthFormConsts.SIGN_UP_QUESTION}
         </Button>
       </LoggingFormBox>
     </form>
